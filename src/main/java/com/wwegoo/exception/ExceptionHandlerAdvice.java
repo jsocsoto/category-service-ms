@@ -15,9 +15,15 @@ public class ExceptionHandlerAdvice {
 	private static final String DEFAULT_EXCEPTION = "default_exception";
 
 	@ExceptionHandler(Exception.class)
-	  public final ResponseEntity<ExceptionHandlerModel> handleAllExceptions(Exception ex, WebRequest request) {
-		ExceptionHandlerModel exceptionResponse = new ExceptionHandlerModel(new Date(),DEFAULT_EXCEPTION, ex.getMessage()
-				);
-	    return new ResponseEntity<>(exceptionResponse, HttpStatus.INTERNAL_SERVER_ERROR);
-	  }
+	public final ResponseEntity<ExceptionHandlerModel> handleAllExceptions(Exception ex, WebRequest request) {
+		ExceptionHandlerModel exceptionResponse = new ExceptionHandlerModel(new Date(), DEFAULT_EXCEPTION,
+				ex.getMessage());
+		return new ResponseEntity<>(exceptionResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+	
+	@ExceptionHandler(CategoryNotFoundException.class)
+	public final ResponseEntity<ExceptionHandlerModel> handleUserNotFoundException(CategoryNotFoundException ex, WebRequest request) {
+		ExceptionHandlerModel exceptionResponse = new ExceptionHandlerModel(new Date(), CategoryNotFoundException.DEFAULT_EXCEPTION, ex.getMessage());
+		return new ResponseEntity<>(exceptionResponse, ex.getHttpStatus());
+	}     
 }

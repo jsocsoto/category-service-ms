@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.wwegoo.dao.CategoryRepository;
 import com.wwegoo.entity.CategoryEntity;
+import com.wwegoo.exception.CategoryNotFoundException;
 
 @Service
 public class CategoryServiceImpl implements CategoryService {
@@ -16,22 +17,23 @@ public class CategoryServiceImpl implements CategoryService {
     CategoryRepository categoryRepository;
 	
 	@Override
-	public CategoryEntity save(CategoryEntity category) {
+	public CategoryEntity save(CategoryEntity category)  {
 		 return categoryRepository.save(category);
 	}
 
 	@Override
-	public void delete(int categoryId) {
-		 this.categoryRepository.deleteById(categoryId);
+	public void delete(int categoryId) throws CategoryNotFoundException {
+		CategoryEntity category = this.fetchById(categoryId);
+		this.categoryRepository.deleteById(category.getId());
 	}
 
 	@Override
-	public CategoryEntity fetchById(int categoryId) {
+	public CategoryEntity fetchById(int categoryId) throws CategoryNotFoundException {
 		Optional<CategoryEntity> category = categoryRepository.findById(categoryId);
         if (category.isPresent()) {
             return category.get();
         } else {
-            return null;
+            throw new CategoryNotFoundException("The category not found.");
         }
 	}
 
