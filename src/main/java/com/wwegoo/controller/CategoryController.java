@@ -22,13 +22,13 @@ public class CategoryController {
 	private CategoryService categoryService;
 
 	@RequestMapping(value = "/category", method = RequestMethod.POST)
-	@PreAuthorize("hasPermission(#order, 'CREATE_CATEGORY')")
+	@PreAuthorize("hasPermission(#category, 'CREATE_CATEGORY')")
 	public ResponseEntity<CategoryEntity> save(@RequestBody CategoryEntity category) {
 		return new ResponseEntity<CategoryEntity>(categoryService.save(category),HttpStatus.OK);
 	}
 	
 	@RequestMapping(value = "/category", method = RequestMethod.PUT)
-	@PreAuthorize("hasPermission(#order, 'UPDATE_CATEGORY')")
+	@PreAuthorize("hasPermission(#category, 'UPDATE_CATEGORY')")
 	public ResponseEntity<CategoryEntity> update(@RequestBody CategoryEntity category) {
 		return new ResponseEntity<CategoryEntity>(categoryService.save(category),HttpStatus.OK);
 	}
