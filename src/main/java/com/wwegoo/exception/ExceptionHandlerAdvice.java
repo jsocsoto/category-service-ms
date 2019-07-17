@@ -22,7 +22,7 @@ public class ExceptionHandlerAdvice {
 	}
 	
 	@ExceptionHandler(CategoryNotFoundException.class)
-	public final ResponseEntity<ExceptionHandlerModel> handleUserNotFoundException(CategoryNotFoundException ex, WebRequest request) {
+	public final ResponseEntity<ExceptionHandlerModel> handleCategoryNotFoundException(CategoryNotFoundException ex, WebRequest request) {
 		ExceptionHandlerModel exceptionResponse = new ExceptionHandlerModel(new Date(), CategoryNotFoundException.DEFAULT_EXCEPTION, ex.getMessage());
 		return new ResponseEntity<>(exceptionResponse, ex.getHttpStatus());
 	}     
