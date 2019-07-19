@@ -33,7 +33,7 @@ public class CategoryServiceImpl implements CategoryService {
         if (category.isPresent()) {
             return category.get();
         } else {
-            throw new CategoryNotFoundException("The category not found.");
+            throw new CategoryNotFoundException("The category was not found.");
         }
 	}
 
