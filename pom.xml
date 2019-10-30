@@ -76,7 +76,7 @@
 				<configuration>
 					<url>http://127.0.0.1:8080/manager/text</url>
 					<server>TomcatServer</server>
-					<username>script</username>
+					<username>admin</username>
                 	<password>satelite</password>
 					<path>/category-service-ms</path>
 					<display-name>Categories microservice</display-name>
